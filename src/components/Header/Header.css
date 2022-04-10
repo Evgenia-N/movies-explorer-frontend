@@ -1,0 +1,53 @@
+.header {
+  width: 100%;
+  background-color: #F3C1F8;
+  font-family: 'Inter';
+  font-size: 0;
+}
+
+.header__container {
+  max-width: 1140px;
+  height: 74px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.header__logo {
+  width: 38px;
+}
+
+.header__authorization-container {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  line-height: 16px;
+  font-size: 12px;
+}
+
+.header__link-register {
+  color: #000;
+  margin-right: 30px;
+}
+
+.header__link-register:hover {
+  cursor: pointer;
+}
+
+.header__link-login {
+  width: 76px;
+  height: 32px;
+  border-radius: 3px;
+  border-style: none;
+  color: #FFF;
+  background-color: #000;
+}
+
+.header__link-login:hover {
+  cursor: pointer;
+}
+
+.header__link-login:hover {
+  opacity: .6;
+  transition: opacity .1s ease;
+}
