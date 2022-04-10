@@ -6,6 +6,10 @@ import Techs from "../Techs/Techs";
 import AboutMe from "../AboutMe/AboutMe";
 import Portfolio from "../Portfolio/Portfolio"
 import Footer from "../Footer/Footer";
+import Login from "../Login/Login"
+import NotFound from "../NotFound/NotFound"
+import Register from "../Register/Register"
+import Profile from "../Profile/Profile"
 
 export default function Main() {
   return (
@@ -16,6 +20,7 @@ export default function Main() {
       <AboutMe />
       <Portfolio />
       <Footer />
+      <Profile />
     </div>
   )
 }

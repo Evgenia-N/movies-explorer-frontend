@@ -2,7 +2,7 @@ import React from "react";
 //import { Routes, Route, Link, NavLink } from 'react-router-dom';
 import './Header.css';
 import logo from '../../images/logo.svg';
-
+//import icon from '../../images/icon.svg'
 export default function Header() {
   
   return (
@@ -19,3 +19,13 @@ export default function Header() {
 }
 
 // isLoggedIn? header_loggedin цвет
+/* <div className="header__container">
+  <div className="header__movies-container">
+    <span></span>
+    <span></span>
+  </div>
+  <div className="header__account-container">
+    <span></span>
+    <img src={icon} alt="иконка"></img>
+  </div>
+</div> */

@@ -1,6 +1,6 @@
 import React from "react";
 import './Promo.css';
-import globe from '../../images/text__COLOR_landing-logo.svg'
+import globe from '../../images/globe.svg'
 
 export default function Promo() {
   return (
