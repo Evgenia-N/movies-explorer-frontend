@@ -25,9 +25,9 @@ export default function Profile(onEdit, userData) {
 
     return (
     <div className="profile">
-      <p className="profile__greeting"> Привет, {user}!</p>
+      <p className="profile__greeting"> Привет, {user||"киноман"}!</p>
       <form onSubmit={handleSubmit} className="profile__form">
-        <label for="name" className="profile__form-label">Имя</label>
+        <label htmlFor="name" className="profile__form-label">Имя</label>
         <input
           required
           id="name"
@@ -37,7 +37,7 @@ export default function Profile(onEdit, userData) {
           onChange={handleChange}
           className="profile__input"
         />
-        <label for="email" className="profile__form-label">Email</label>
+        <label htmlFor="email" className="profile__form-label">Email</label>
         <input
           required
           id="email"

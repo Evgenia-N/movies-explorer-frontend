@@ -1,5 +1,6 @@
 .page-not-found {
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 .page-not-found__container {
@@ -13,21 +14,26 @@
 
 .page-not-found__number {
   font-size: 140px;
-  font-weight: 400;
   line-height: 169px;
   margin-bottom: 5px;
 }
 
 .page-not-found__text {
   font-size: 16px;
-  font-weight: 400;
   line-height: 19px;
   margin: 0 0 184px;
 }
 
 .page-not-found__go-back-button {
   font-size: 14px;
-  font-weight: 400;
   line-height: 17px;
   margin: 0 0 60px;
+  background-color: #FFF;
+  border-style: none;
+}
+
+.page-not-found__go-back-button:hover {
+  opacity: .7;
+  cursor: pointer;
+  transition: opacity .1s ease;
 }

@@ -1,6 +1,7 @@
 .portfolio {
   max-width: 1140px;
   margin: 0 auto 125px;
+  font-weight: 400;
 }
 
 .portfolio__title {
@@ -30,7 +31,6 @@
   max-width: 880px;
   overflow-wrap: break-word;
   font-size: 30px;
-  font-weight: 400;
   line-height: 50px;
   letter-spacing: -0.04em;
 }
@@ -45,6 +45,6 @@
   text-decoration: none;
 }
 .portfolio__project-link:hover {
-  opacity: .6;
+  opacity: .7;
   transition: opacity .1s ease;
 }

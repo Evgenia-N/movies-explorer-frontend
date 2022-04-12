@@ -1,7 +1,6 @@
 .promo {
   max-width: 100%;
   margin: 0 auto;
-  font-family: 'Inter';
   text-align: left;
   background-color: #F3C1F8;
 }
@@ -51,6 +50,6 @@
 }
 
 .promo__button:hover {
-  opacity: .6;
+  opacity: .7;
   transition: opacity .1s ease;
 }

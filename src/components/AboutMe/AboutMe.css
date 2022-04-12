@@ -80,6 +80,6 @@
 }
 
 .about-me__link:hover {
-  opacity: .6;
+  opacity: .7;
   transition: opacity .1s ease;
 }

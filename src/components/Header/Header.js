@@ -1,5 +1,5 @@
 import React from "react";
-//import { Routes, Route, Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../../images/logo.svg';
 //import icon from '../../images/icon.svg'
@@ -8,10 +8,10 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header__container">
-        <img src={logo} alt="Логотип" className="header__logo" />
+      <Link to="/"><img src={logo} alt="Логотип" className="header__logo" /></Link>
         <div className="header__authorization-container">
-          <span className='header__link-register'>Регистрация</span> 
-          <button className='header__link-login'>Войти</button>
+        <Link to="/signup" className="header__link-register">Регистрация</Link>
+        <Link to="/signin"><button className='header__link-login'>Войти</button></Link> 
         </div>
       </div>
     </header>

@@ -1,6 +1,7 @@
 import React from "react";
 import './Register.css';
 import logo from '../../images/logo.svg';
+import { Link } from "react-router-dom";
 
 export default function Register({onRegister}) {
   const [values, setValues] = React.useState({
@@ -28,11 +29,11 @@ export default function Register({onRegister}) {
     return (
       <div className="register">
         <div className="register__container">
-          <img src={logo} alt="Логотип" className="register__logo" />
+        <Link to="/"><img src={logo} alt="Логотип" className="register__logo" /></Link>
           <span className="register__welcome">Добро пожаловать!</span>
         </div>
         <form onSubmit={handleSubmit} className="register__form">
-        <label for="name" className="login__form-label">Имя</label>
+        <label htmlFor="name" className="login__form-label">Имя</label>
           <input
             id="name"
             name="name"
@@ -41,7 +42,7 @@ export default function Register({onRegister}) {
             onChange={handleChange}
             className="register__input"
           />
-        <label for="email" className="login__form-label">Email</label>
+        <label htmlFor="email" className="login__form-label">Email</label>
           <input
             id="email"
             name="email"
@@ -50,7 +51,7 @@ export default function Register({onRegister}) {
             onChange={handleChange}
             className="register__input"
           />
-          <label for="password" className="login__form-label">Пароль</label>
+          <label htmlFor="password" className="login__form-label">Пароль</label>
           <input
             id="password"
             name="password"
@@ -65,10 +66,10 @@ export default function Register({onRegister}) {
             className="register__link"> Зарегистрироваться
           </button>
         </form>
-        <p className="register-login__text">Уже зарегистрированы? Войти</p>
-          {/* <Link to="/sign-in" className="register-login__link">
-            Войти
-          </Link> */}
+        <div className="register-login__container">
+          <p className="register-login__text">Уже зарегистрированы?</p>
+          <Link to="/signin" className="register-login__link">Войти</Link>
         </div>
+      </div>
     );
 }
