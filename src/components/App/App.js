@@ -9,6 +9,7 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 
 export default function App() {
   //const CurrentUserContext = React.createContext();
@@ -42,6 +43,12 @@ export default function App() {
           <Route path='/movies'>
             <Header />
             <Movies />
+            <Footer />
+          </Route>
+
+          <Route path='/saved-movies'>
+            <Header />
+            <SavedMovies />
             <Footer />
           </Route>
 
