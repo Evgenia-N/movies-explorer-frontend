@@ -14,15 +14,11 @@
   width: 396px;
 }
 
-.register__logo {
-  margin-bottom: 40px;
-}
-
 .register__welcome {
   font-size: 24px;
   font-weight: 500;
   line-height: 29px;
-  margin-bottom: 40px;
+  margin: 40px 0;
 }
 
 .register__form {
@@ -42,6 +38,7 @@
 .register__input {
   background-color: #FFF;
   border: none;
+  border-radius: 3px;
   border-bottom: 1px  solid #E8E8E8;
   margin-bottom: 24px;
   height: 27px;
@@ -58,12 +55,6 @@
 .register__input:hover,
 .register__input:focus {
   outline: 2px solid #F3C1F8;
-  border-radius: 3px;
-}
-
-.register__input:active {
-  background-color: #F3C1F8;
-  border-bottom: none;
 }
 
 .register__link {
@@ -86,10 +77,11 @@
 
 .register-login__container {
   display: flex;
+  margin-bottom: 70px
 }
 
 .register-login__text {
-  margin: 0 0 70px;
+  margin: 0;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

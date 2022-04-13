@@ -1,0 +1,40 @@
+.movies-cardlist {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: grid;
+  column-gap: 30px;
+  row-gap: 58px;
+  grid-template-columns: repeat(auto-fit, 360px);
+}
+
+.movies-cardlist__movie {
+  width: 360px;
+}
+
+.movies-cardlist__movie:hover {
+  cursor: pointer;
+}
+
+.movies-cardlist__more-movies-container {
+  max-width: 1140px;
+  padding: 50px 0 80px;
+}
+
+.movies-cardlist__more-movies-button {
+  width: 100%;
+  height: 36px;
+  border: none;
+  padding: 0;
+  background-color: #F9F9F9;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  border-radius: 6px;
+}
+
+.movies-cardlist__more-movies-button:hover {
+  cursor: pointer;
+  opacity: .8;
+  transition: opacity .1s ease;
+}

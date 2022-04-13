@@ -14,15 +14,11 @@
   width: 396px;
 }
 
-.login__logo {
-  margin-bottom: 40px;
-}
-
 .login__welcome {
   font-size: 24px;
   font-weight: 500;
   line-height: 29px;
-  margin-bottom: 40px;
+  margin: 40px 0;
 }
 
 .login__form {
@@ -42,6 +38,7 @@
 .login__input {
   background-color: #FFF;
   border: none;
+  border-radius: 3px;
   border-bottom: 1px  solid #E8E8E8;
   margin-bottom: 24px;
   height: 27px;
@@ -58,12 +55,6 @@
 .login__input:hover,
 .login__input:focus {
   outline: 2px solid #F3C1F8;
-  border-radius: 3px;
-}
-
-.login__input:active {
-  background-color: #F3C1F8;
-  border-bottom: none;
 }
 
 .login__link-button {
@@ -86,6 +77,7 @@
 
 .login__register-container {
   display: flex;
+  margin-bottom: 70px;
 }
 
 .login__register-text {
@@ -93,7 +85,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  margin: 0 0 70px;
+  margin: 0;
 }
 
 .login__register-link {

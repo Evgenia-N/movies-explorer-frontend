@@ -1,14 +1,14 @@
 import React from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { Switch, Route, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import NotFound from '../NotFound/NotFound';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-import { Switch } from 'react-router-dom';
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
+import Movies from '../Movies/Movies';
 
 export default function App() {
   //const CurrentUserContext = React.createContext();
@@ -37,6 +37,12 @@ export default function App() {
           <Route path='/profile'>
             <Header />
             <Profile />
+          </Route>
+
+          <Route path='/movies'>
+            <Header />
+            <Movies />
+            <Footer />
           </Route>
 
           <Route path='/*'>

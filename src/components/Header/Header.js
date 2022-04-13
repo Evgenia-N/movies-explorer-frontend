@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header__container">
-      <Link to="/"><img src={logo} alt="Логотип" className="header__logo" /></Link>
+      <Link to="/" className="header__link-main"><img src={logo} alt="Логотип" className="header__logo" /></Link>
         <div className="header__authorization-container">
         <Link to="/signup" className="header__link-register">Регистрация</Link>
         <Link to="/signin"><button className='header__link-login'>Войти</button></Link> 
