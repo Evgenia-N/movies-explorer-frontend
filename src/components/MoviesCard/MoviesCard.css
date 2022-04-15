@@ -82,3 +82,22 @@
   cursor: pointer;
   z-index: 2;
 }
+
+.movies-card__delete-button {
+  width: 21px;
+  height: 21px;
+  background-image: url('../../images/movie-saved.svg');
+  background-color: transparent;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 0;
+  border: 0;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+.movies-card__delete-button:hover {
+  background-image: url('../../images/delete-movie.svg');
+  z-index: 2;
+} 
