@@ -10,6 +10,7 @@
 
 .movies-cardlist__movie {
   width: 360px;
+  position: relative;
 }
 
 .movies-cardlist__movie:hover {

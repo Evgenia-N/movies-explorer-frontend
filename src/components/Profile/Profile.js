@@ -1,31 +1,36 @@
 import React from "react";
 import './Profile.css';
 
-export default function Profile(onEdit, userData) {
-  let {user} = userData;
-  const [values, setValues] = React.useState({
-    name: '',
-    email: '',
+export default function Profile() {
+  const [isDisabled, setIsDisabled] = React.useState(true);
+  const [isEditModeOpen, setIsEditModeOpen] = React.useState(false);
+
+  function editProfile() {
+    setIsDisabled(false);
+    setIsEditModeOpen(true);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setIsDisabled(true);
+    setIsEditModeOpen(false);
+  }
+
+  const [userdata, setUserData] = React.useState({
+    name: ' ',
+    email: ' ',
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setValues((prevState) => ({
+  function handleInputChange(e) {
+    setUserData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [e.target.name]: e.target.value,
     }));
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const name=values.name;
-    const email=values.email;
-    onEdit(name, email);
-  };
-
     return (
     <div className="profile">
-      <p className="profile__greeting"> Привет, {user||"киноман"}!</p>
+      <p className="profile__greeting"> {`Привет${userdata.name === ' ' ? '!' : ', ' + userdata.name + '!' }`}</p>
       <form onSubmit={handleSubmit} className="profile__form">
         <label htmlFor="name" className="profile__form-label">Имя</label>
         <input
@@ -33,9 +38,13 @@ export default function Profile(onEdit, userData) {
           id="name"
           name="name"
           type="name"
-          value={values.name || ''}
-          onChange={handleChange}
+          value={userdata.name || ''}
+          onChange={handleInputChange}
           className="profile__input"
+          disabled={isDisabled}
+          autocomplete="off"
+          minLength='2'
+          maxLength='30'
         />
         <label htmlFor="email" className="profile__form-label">Email</label>
         <input
@@ -43,13 +52,18 @@ export default function Profile(onEdit, userData) {
           id="email"
           name="email"
           type="email"
-          value={values.email || ''}
-          onChange={handleChange}
+          value={userdata.email || ''}
+          onChange={handleInputChange}
           className="profile__input"
+          disabled={isDisabled}
+          autocomplete="off"
+          minLength='2'
+          maxLength='30'
         />
+        <button className={`profile__submit-button ${isEditModeOpen ? 'profile__submit-button_visible' : ''}`} type="submit">Сохранить</button>
       </form>
-      <button className='profile__edit-button'>Редактировать</button>
-      <button className='profile__logout-button'>Выйти из аккаунта</button>
+      <button className={`profile__edit-button ${isEditModeOpen ? 'profile__edit-button_hidden' : ''}`} onClick={editProfile} >Редактировать</button>
+      <button className={`profile__logout-button ${isEditModeOpen ? 'profile__logout-button_hidden' : ''}`}>Выйти из аккаунта</button>
     </div>
   )
 }
