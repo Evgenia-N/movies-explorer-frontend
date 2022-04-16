@@ -4,7 +4,8 @@
   align-items: center;
   flex: 1;
   padding-top: 74px;
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 0;
 }
 
 .profile__greeting {
@@ -45,6 +46,11 @@
   text-align: right;
 }
 
+.profile__input:focus,
+.profile__input:active {
+  outline: none;
+}
+
 .profile__input:last-of-type {
   margin-bottom: 220px;
   border-bottom: none;
@@ -59,6 +65,8 @@
   line-height: 16px;
   margin: 0 0 16px;
   display: block;
+  padding: 0;
+  cursor: pointer;
 }
 
 .profile__logout-button {
@@ -71,6 +79,8 @@
   color: #FF4062;
   margin: 0 0 70px;
   display: block;
+  padding: 0;
+  cursor: pointer;
 }
 
 .profile__submit-button {
@@ -100,6 +110,5 @@
 }
 
 input:-webkit-autofill {
-  border: none;
   -webkit-box-shadow: 0 0 0px 1000px #FFF inset;
 }

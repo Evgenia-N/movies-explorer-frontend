@@ -26,7 +26,7 @@
 
 .search-form__input:hover,
 .search-form__input:focus {
-  outline: 2px solid #F3C1F8;
+  outline: 1px solid #000;
 }
 
 .search-form__input:active {

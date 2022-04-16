@@ -1,10 +1,12 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import './Profile.css';
 
 export default function Profile() {
   const [isDisabled, setIsDisabled] = React.useState(true);
   const [isEditModeOpen, setIsEditModeOpen] = React.useState(false);
-
+  const history = useHistory();
+  
   function editProfile() {
     setIsDisabled(false);
     setIsEditModeOpen(true);
@@ -14,6 +16,11 @@ export default function Profile() {
     e.preventDefault();
     setIsDisabled(true);
     setIsEditModeOpen(false);
+  }
+
+  function handleLogout(e) {
+    e.preventDefault();
+    history.push("/signin")
   }
 
   const [userdata, setUserData] = React.useState({
@@ -28,7 +35,7 @@ export default function Profile() {
     }));
   }
 
-    return (
+  return (
     <div className="profile">
       <p className="profile__greeting"> {`Привет${userdata.name === ' ' ? '!' : ', ' + userdata.name + '!' }`}</p>
       <form onSubmit={handleSubmit} className="profile__form">
@@ -42,7 +49,7 @@ export default function Profile() {
           onChange={handleInputChange}
           className="profile__input"
           disabled={isDisabled}
-          autocomplete="off"
+          autoComplete="off"
           minLength='2'
           maxLength='30'
         />
@@ -56,14 +63,14 @@ export default function Profile() {
           onChange={handleInputChange}
           className="profile__input"
           disabled={isDisabled}
-          autocomplete="off"
+          autoComplete="off"
           minLength='2'
           maxLength='30'
         />
         <button className={`profile__submit-button ${isEditModeOpen ? 'profile__submit-button_visible' : ''}`} type="submit">Сохранить</button>
       </form>
       <button className={`profile__edit-button ${isEditModeOpen ? 'profile__edit-button_hidden' : ''}`} onClick={editProfile} >Редактировать</button>
-      <button className={`profile__logout-button ${isEditModeOpen ? 'profile__logout-button_hidden' : ''}`}>Выйти из аккаунта</button>
+      <button className={`profile__logout-button ${isEditModeOpen ? 'profile__logout-button_hidden' : ''}`} onClick={handleLogout}>Выйти из аккаунта</button>
     </div>
   )
 }

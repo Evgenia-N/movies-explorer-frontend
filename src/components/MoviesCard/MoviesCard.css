@@ -77,16 +77,10 @@
   transition: opacity 0.5s ease-out;
 }
 
-.movies-card__save-button:hover,
-.movies-card__saved-button:hover {
-  cursor: pointer;
-  z-index: 2;
-}
-
 .movies-card__delete-button {
   width: 21px;
   height: 21px;
-  background-image: url('../../images/movie-saved.svg');
+  background-image: url('../../images/delete-movie.svg');
   background-color: transparent;
   position: absolute;
   top: 14px;
@@ -97,7 +91,10 @@
   opacity: 1;
   transition: opacity 0.5s ease-out;
 }
+
+.movies-card__save-button:hover,
+.movies-card__saved-button:hover,
 .movies-card__delete-button:hover {
-  background-image: url('../../images/delete-movie.svg');
+  cursor: pointer;
   z-index: 2;
-} 
+}

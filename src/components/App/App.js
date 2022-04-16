@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, useNavigate, useLocation } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -12,19 +12,14 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 
 export default function App() {
-  //const CurrentUserContext = React.createContext();
-  //const [currentUser, setCurrentUser] = React.useState({});
-  // const navigate = useNavigate(); import { Routes, Route, useNavigate, useLocation }
-  // const location = useLocation(); import { Routes, Route, useNavigate, useLocation }
 
   return (
-      <div className="page">
-          
-          <Switch>
+    <div className="page">
+      <Header />
+        <Switch>
+
           <Route path='/' exact>
-            <Header />
             <Main />
-            <Footer />
           </Route>
 
           <Route path='/signup'>
@@ -36,28 +31,23 @@ export default function App() {
           </Route>
 
           <Route path='/profile'>
-            <Header />
             <Profile />
           </Route>
 
           <Route path='/movies'>
-            <Header />
             <Movies />
-            <Footer />
           </Route>
 
           <Route path='/saved-movies'>
-            <Header />
             <SavedMovies />
-            <Footer />
           </Route>
 
           <Route path='/*'>
             <NotFound />
           </Route>
+
         </Switch>
-      </div>
-    //<CurrentUserContext.Provider value={currentUser}>
-    //</CurrentUserContext.Provider>
+      <Footer />
+    </div>
   );
 }
