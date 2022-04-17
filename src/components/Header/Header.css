@@ -10,48 +10,19 @@
 }
 
 .header__container {
+  width: 89%;
   max-width: 1140px;
   height: 74px;
   display: flex;
+  position: relative;
   justify-content: space-between;
   margin: 0 auto;
 }
 
-.header__movies-container {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.header__movies-links-container {
-  margin-left: 44px;
-  display: flex;
-  align-items: center;
-}
-
-.header__link-main{
+.header__link-logo {
   width: 38px;
   height: 38px;
   margin-top: 18px;
-}
-
-.header__link-movies {
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 18px;
-}
-
-.header__link-saved-movies {
-  text-decoration: none;
-  margin-left: 16px;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 18px;
-}
-
-.header__logo {
-  width: 38px;
-  height: 38px;
 }
 
 .header__authorization-container {
@@ -84,10 +55,10 @@
   border-style: none;
   color: #FFF;
   background-color: #000;
+  padding: 0;
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
-  text-align: center;
   text-decoration: none;
 }
 
@@ -97,10 +68,24 @@
   transition: opacity .1s ease;
 }
 
-.header__link-profile {
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 16px;
-  margin-top: 22px;
+@media (max-width: 768px) {
+  .header__container {
+    width: 92%;
+  }
+  .header__link-logo {
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 320px) {
+  .header__container {
+    width: 91%;
+  }
+  .header__link-register {
+    font-size: 10px;
+    margin-right: 14px;
+  }
+  .header__link-login {
+    font-size: 10px;
+  }
 }

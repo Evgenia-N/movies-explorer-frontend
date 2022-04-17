@@ -6,13 +6,13 @@
 .page-not-found__container {
   max-width: 400px;
   margin: 0 auto;
-  padding-top: 246px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.page-not-found__number {
+.page-not-found__code {
+  margin-top: 35vh;
   font-size: 140px;
   line-height: 169px;
   margin-bottom: 5px;
@@ -21,13 +21,14 @@
 .page-not-found__text {
   font-size: 16px;
   line-height: 19px;
-  margin: 0 0 184px;
+  margin: 0 0 26vh;
 }
 
 .page-not-found__go-back-button {
   font-size: 14px;
   line-height: 17px;
-  margin: 0 0 60px;
+  margin: 0;
+  padding: 0;
   background-color: #FFF;
   border-style: none;
 }
@@ -36,4 +37,30 @@
   opacity: .7;
   cursor: pointer;
   transition: opacity .1s ease;
+}
+
+@media (max-width: 768px) {
+  .page-not-found__code {
+    margin-top: 40vh;
+  }
+  .page-not-found__text {
+    margin: 0 0 18vh;
+  }
+}
+
+@media (max-width: 320px) {
+  .page-not-found__code {
+    margin-top: 42vh;
+    margin-bottom: 10px;
+    font-size: 80px;
+    line-height: 97px;
+  }
+  .page-not-found__text {
+    margin-bottom: 36vh;
+  }
+  .page-not-found__text,
+  .page-not-found__go-back-button {
+    font-size: 12px;
+    line-height: 15px;
+  }
 }
