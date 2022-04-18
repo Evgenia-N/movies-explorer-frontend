@@ -1,9 +1,8 @@
 import React from "react";
 import './MoviesCard.css'
-import pic from '../../images/pic1.svg'
 import { Route } from "react-router-dom";
 
-export default function MoviesCard() {
+export default function MoviesCard(props) {
   const [isSaved, setIsSaved] = React.useState(false);
 
   function onSaveMovie() {
@@ -16,7 +15,7 @@ export default function MoviesCard() {
 
   return (
   <>
-  <img src={pic} alt="Скриншот из фильма" className="movies-card__pic" />
+  <img src={props.movie.image} alt={props.movie.nameRU} className="movies-card__pic" />
   <Route path="/movies">
     <button onClick={onSaveMovie} className={ isSaved ? "movies-card__saved-button" : "movies-card__save-button"}></button> 
   </Route>
@@ -24,8 +23,8 @@ export default function MoviesCard() {
     <button onClick={onDeleteMovie} className="movies-card__delete-button"></button>
   </Route>
   <div className="movies-card__container">
-    <p className="movies-card__title">33 слова о дизайне</p>
-    <div className="movies-card__duration-background"><p className="movies-card__duration">1ч 17м</p></div>
+    <p className="movies-card__title">{props.movie.nameRU}</p>
+    <div className="movies-card__duration-background"><p className="movies-card__duration">{props.movie.duration}</p></div>
   </div>
   </>
   )

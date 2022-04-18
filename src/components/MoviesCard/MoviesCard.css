@@ -21,8 +21,6 @@
   font-size: 13px;
   font-weight: 500;
   line-height: 16px;
-  letter-spacing: 0px;
-  text-align: left;
 }
 
 .movies-card__duration {
@@ -33,7 +31,7 @@
 }
 
 .movies-card__duration-background {
-  margin: 0 0 0 30px;
+  margin: 0;
   width: 52px;
   height: 18px;
   background-color: #F9F9F9;
@@ -97,4 +95,43 @@
 .movies-card__delete-button:hover {
   cursor: pointer;
   z-index: 2;
+}
+
+@media (max-width: 1279px) {
+  .movies-card__pic {
+    width: 339px;
+  }  
+  .movies-card__container {
+    width: 339px;
+    margin-top: 25px;
+  }  
+}
+
+@media (max-width: 767px) {
+  .movies-card__pic {
+    width: 300px;
+  }
+  .movies-card__container {
+    width: 300px;
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .movies-card__title {
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 13px;
+  }
+  .movies-card__save-button {
+    top: 10px;
+    right: 10px;
+  }
+  .movies-card__saved-button {
+    top: 10px;
+    right: 10px;
+  }
+  .movies-card__delete-button {
+    top: 10px;
+    right: 10px;
+  }
 }

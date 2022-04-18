@@ -39,3 +39,42 @@
   opacity: .8;
   transition: opacity .1s ease;
 }
+
+.movies-cardlist-divider {
+  display: none;
+  width: 320px;
+  height: 140px;
+}
+
+@media (max-width: 1279px) {
+  .movies-cardlist {
+    margin-bottom: 12px;
+    row-gap: 45px;
+    grid-template-columns: repeat(auto-fit, 339px);
+  }
+  .movies-cardlist__movie {
+    width: 339px;
+  }
+  .movies-cardlist__more-movies-container {
+    max-width: 708px;
+  }
+}
+
+@media (max-width: 767px) {
+  .movies-cardlist {
+    margin: 40px 0 13px;
+    row-gap: 39px;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+  }
+  .movies-cardlist__movie {
+    width: 300px;
+  }
+  .movies-cardlist__more-movies-container {
+    max-width: 320px;
+    padding: 50px 0 80px;
+  }
+  .movies-cardlist-divider {
+    display: block;
+  }
+}
