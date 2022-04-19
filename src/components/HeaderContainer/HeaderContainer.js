@@ -17,6 +17,8 @@ export default function HeaderContainer() {
   }
 
   return (
+    <>
+    <div className={`header__menu-background ${isMenuOpened ? 'header__menu-background_visible' : ''}`} ></div>
     <div className="header__container">
       <div className="header__movies-container">
         <Link to="/" className="header__link-logo">
@@ -51,7 +53,9 @@ export default function HeaderContainer() {
         <Link to="/profile" className="header__navigation-link-profile">
           <img src={icon} alt="Иконка пользователя" className="header__icon"/>
         </Link>
+
       </div>
     </div>
+    </>
   );
 }

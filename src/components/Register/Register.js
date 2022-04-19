@@ -63,12 +63,12 @@ export default function Register({onRegister}) {
           <button
             type="submit"
             onSubmit={handleSubmit}
-            className="register__link"> Зарегистрироваться
+            className="register__link-button"> Зарегистрироваться
           </button>
         </form>
-        <div className="register-login__container">
-          <p className="register-login__text">Уже зарегистрированы?</p>
-          <Link to="/signin" className="register-login__link">Войти</Link>
+        <div className="register__login-container">
+          <p className="register__login-text">Уже зарегистрированы?</p>
+          <Link to="/signin" className="register__login-link">Войти</Link>
         </div>
       </div>
     );

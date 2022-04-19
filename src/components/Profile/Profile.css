@@ -112,3 +112,49 @@
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px #FFF inset;
 }
+
+@media (max-width: 1279px) {
+  .profile {
+    padding-top: 236px;
+  }
+  .profile__greeting {
+    padding-bottom: 96px;
+  }
+  .profile__input:last-of-type {
+    margin-bottom: 210px;
+  }
+  .profile__logout-button {
+    margin-bottom: 276px;
+  }
+}
+
+@media (max-width: 767px) {
+  .profile {
+    padding-top: 70px;
+  }
+  .profile__greeting {
+    padding-bottom: 80px;
+  }
+  .profile__form {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+  }
+  .profile__input:last-of-type {
+    margin-bottom: 379px;
+  }
+  .profile__edit-button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .profile__logout-button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .profile__submit-button {
+    width: 260px;
+    height: 45px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

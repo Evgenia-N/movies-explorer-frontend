@@ -50,8 +50,6 @@ export default function Profile() {
           className="profile__input"
           disabled={isDisabled}
           autoComplete="off"
-          minLength='2'
-          maxLength='30'
         />
         <label htmlFor="email" className="profile__form-label">Email</label>
         <input
@@ -64,8 +62,6 @@ export default function Profile() {
           className="profile__input"
           disabled={isDisabled}
           autoComplete="off"
-          minLength='2'
-          maxLength='30'
         />
         <button className={`profile__submit-button ${isEditModeOpen ? 'profile__submit-button_visible' : ''}`} type="submit">Сохранить</button>
       </form>

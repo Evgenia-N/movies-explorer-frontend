@@ -49,6 +49,20 @@
   background-color: inherit;
 }
 
+.header__menu-background {
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  opacity: 0.3;
+  display: none;
+  position: absolute;
+}
+
+.header__menu-background_visible {
+  display: block;
+}
+
 .header__menu {
   width: 67%;
   height: 100vh;
@@ -57,6 +71,7 @@
   right: 0;
   display: none;
   background-color: #FFF;
+  z-index: 3;
 }
 
 .header__menu_visible {
