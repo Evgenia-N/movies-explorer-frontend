@@ -18,8 +18,8 @@ export default function AboutMe() {
           Вдохновившись опытом своих подруг и друзей, работающих в айти, я решила пройти курс "Веб-разработчик" на Яндекс Практикуме. 
           Работа за ноутбуком всегда привлекала меня больше, чем суды. Посмотрим, что из этого выйдет!</p>
           <div className="about-me__links-container">
-            <a href="https://www.linkedin.com" className="about-me__link" target="blank" aria-label="ссылка на профиль в соц.сети">LinkedIn</a>
-            <a href="https://github.com/Evgenia-N" className="about-me__link" target="blank" aria-label="ссылка на аккаунт на Гитхабе">Github</a>
+            <a href="https://www.linkedin.com" className="about-me__link" target="_blank" aria-label="ссылка на профиль в соц.сети">LinkedIn</a>
+            <a href="https://github.com/Evgenia-N" className="about-me__link" target="_blank" aria-label="ссылка на аккаунт на Гитхабе">Github</a>
           </div>
         </div>
         <img src={photo} alt="Фото автора дипломного проекта" className="about-me__pic"/>
