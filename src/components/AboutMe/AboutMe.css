@@ -139,6 +139,10 @@
     max-width: 292px;
     margin-bottom: 69px;
   }
+  .about-me__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
   .about-me__name {
     font-size: 30px;
     line-height: 36px;

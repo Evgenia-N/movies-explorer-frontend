@@ -41,6 +41,7 @@ export default function Register({onRegister}) {
             value={values.name}
             onChange={handleChange}
             className="register__input"
+            required
           />
         <label htmlFor="email" className="login__form-label">Email</label>
           <input
@@ -50,6 +51,7 @@ export default function Register({onRegister}) {
             value={values.email}
             onChange={handleChange}
             className="register__input"
+            required
           />
           <label htmlFor="password" className="login__form-label">Пароль</label>
           <input
@@ -59,6 +61,7 @@ export default function Register({onRegister}) {
             value={values.password}
             onChange={handleChange}
             className="register__input"
+            required
           />
           <button
             type="submit"

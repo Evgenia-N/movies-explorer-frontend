@@ -131,6 +131,10 @@
     letter-spacing: -0.04em;
     width: 284px;
   }
+  .about-project__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
    .about-project__text {
     order: 0;
     font-size: 18px;
