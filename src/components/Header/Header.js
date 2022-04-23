@@ -4,14 +4,13 @@ import HeaderContainer from "../HeaderContainer/HeaderContainer";
 import './Header.css';
 import logo from '../../images/logo.svg';
 
-export default function Header() {
-  const [isAuthorised, setIsAuthorised] = React.useState(false);
+export default function Header({loggedIn}) {
 
   return (
     <Switch>
       <Route exact path='/'>
         <header className="header">
-          {isAuthorised
+          {loggedIn
             ? <HeaderContainer />
             : <div className="header__container">
                 <Link to="/" className="header__link-logo">
@@ -33,7 +32,6 @@ export default function Header() {
 
       <Route path={[`/signin`, `/signup`, `/*`]} >
       </Route>
-
     </Switch>
   )
 }

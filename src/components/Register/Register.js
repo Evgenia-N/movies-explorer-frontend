@@ -24,7 +24,7 @@ export default function Register({onRegister}) {
     const email=values.email;
     const password=values.password;
     onRegister(name, email, password);
-    }
+  }
 
     return (
       <div className="register">

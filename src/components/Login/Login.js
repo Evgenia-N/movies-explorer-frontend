@@ -37,7 +37,7 @@ export default function Login({onLogin}) {
           id="email"
           name="email"
           type="email"
-          value={values.email || ''}
+          value={values.email}
           onChange={handleChange}
           className="login__input"
         />
@@ -47,7 +47,7 @@ export default function Login({onLogin}) {
           id="password"
           name="password"
           type="password"
-          value={values.password || ''}
+          value={values.password}
           onChange={handleChange}
           className="login__input"
         />
