@@ -12,15 +12,24 @@ import Footer from '../Footer/Footer';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import * as auth from '../../utils/Auth';
-import ProtectedRoute from '../../utils/ProtectedRoute';
+import { ProtectedRoute } from '../../utils/ProtectedRoute';
+import { AuthorizationRoute } from '../../utils/AuthorizationRoute';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
 
 export default function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
-  const [movies, setMovies] = React.useState([]);
-  const [userData, setUserData] = React.useState({});
+  // const [movies, setMovies] = React.useState([]);
+  // const [userData, setUserData] = React.useState({});
+
+  const [ initialMovies, setInitialMovies ] = React.useState([]);
+  const [ areThereStoragedMovies, setAreThereStoragedMovies ] = React.useState(false);
+  const [ areStoragedMoviesFiltered, setAreStoragedMoviesFiltered ] = React.useState(false);
+  const [ storagedShortMovies, setStoragedShortMovies ] = React.useState([]);
+  const [ storagedMovies, setStoragedMovies ] = React.useState([]);
+  const [ isShortMoviesCheckboxChecked, setIsShortMoviesCheckboxChecked ] = React.useState(false);
+
   const location = useLocation();
   const history = useHistory();
   
@@ -140,39 +149,50 @@ export default function App() {
             <Main />
           </Route>
 
-          <Route path="/signup">
-            <Register onRegister={onRegister} />
+          <AuthorizationRoute 
+            loggedIn={loggedIn}
+            path="/signup"
+            component={Register}
+            onRegister={onRegister}>
+          </AuthorizationRoute>
+
+          <AuthorizationRoute 
+            loggedIn={loggedIn}
+            path="/signin"
+            component={Login}
+            onLogin={onLogin}>
+          </AuthorizationRoute>
+
+          <ProtectedRoute 
+            loggedIn={loggedIn}
+            path="/profile"
+            component={Profile}
+            onEdit={handleUserUpdate} 
+            onSignOut={handleLogout}>
+          </ProtectedRoute>
+
+          <ProtectedRoute 
+            loggedIn={loggedIn}
+            path="/movies"
+            component={Movies}
+            initialMovies={initialMovies}
+            areThereStoragedMovies={areThereStoragedMovies}
+            areStoragedMoviesFiltered={areStoragedMoviesFiltered}
+            storagedShortMovies={storagedShortMovies}
+            storagedMovies={storagedMovies}
+            isShortMoviesCheckboxChecked={isShortMoviesCheckboxChecked}
+            setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}>
+          </ProtectedRoute>
+
+          <ProtectedRoute 
+            loggedIn={loggedIn}
+            path="/saved-movies"
+            component={SavedMovies}>
+          </ProtectedRoute>
+          
+          <Route path="/*">
+            <NotFound />
           </Route>
-
-          <Route path="/signin">
-            <Login onLogin={onLogin} />
-          </Route>
-
-          <ProtectedRoute loggedIn={loggedIn}>
-            <Route path="/profile">
-              <Profile 
-              onEdit={handleUserUpdate} 
-              onSignOut={handleLogout} />
-            </Route>
-          </ProtectedRoute>
-
-          <ProtectedRoute loggedIn={loggedIn}>
-            <Route path="/movies">
-              <Movies />
-            </Route>
-          </ProtectedRoute>
-
-          <ProtectedRoute loggedIn={loggedIn}>
-            <Route path="/saved-movies">
-              <SavedMovies />
-            </Route>
-          </ProtectedRoute>
-
-          <ProtectedRoute loggedIn={loggedIn}>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </ProtectedRoute>
         </Switch>
         <Footer />
       </div>
