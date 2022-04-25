@@ -15,7 +15,9 @@ export default function MoviesCard(props) {
 
   return (
   <>
-  <img src={props.movie.image} alt={props.movie.nameRU} className="movies-card__pic" />
+  <a href={props.movie.trailerLink} className='movies-card__video' target="_blank">
+    <img src={props.movie.image} alt={props.movie.nameRU} className="movies-card__pic" />
+  </a>
   <Route path="/movies">
     <button onClick={onSaveMovie} className={ isSaved ? "movies-card__saved-button" : "movies-card__save-button"}></button> 
   </Route>
@@ -24,7 +26,7 @@ export default function MoviesCard(props) {
   </Route>
   <div className="movies-card__container">
     <p className="movies-card__title">{props.movie.nameRU}</p>
-    <div className="movies-card__duration-background"><p className="movies-card__duration">{props.movie.duration}</p></div>
+    <div className="movies-card__duration-background"><p className="movies-card__duration">{props.movie.duration} мин</p></div>
   </div>
   </>
   )

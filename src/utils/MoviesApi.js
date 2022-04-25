@@ -12,7 +12,7 @@ class MoviesApi {
   }
 
   getMovies() {
-    return fetch(`${this._url}/movies`, {
+    return fetch(`${this._url}`, {
       method: "GET",
 //      credentials: 'include',
       headers: this._headers,
@@ -21,7 +21,7 @@ class MoviesApi {
   }
 
   saveMovie(movie) {
-    return fetch(`${this._url}/movies`, {
+    return fetch(`${this._url}`, {
       method: "POST",
 //      credentials: 'include',
       headers: this._headers,
@@ -31,7 +31,7 @@ class MoviesApi {
   }
 
   deleteCard(movieId) {
-    return fetch(`${this._url}/movies/${movieId}`, {
+    return fetch(`${this._url}/${movieId}`, {
       method: "DELETE",
 //      credentials: 'include',
       headers: this._headers,
