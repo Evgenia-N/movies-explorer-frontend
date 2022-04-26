@@ -20,16 +20,14 @@ import MoviesApi from '../../utils/MoviesApi';
 export default function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
-  // const [movies, setMovies] = React.useState([]);
-  // const [userData, setUserData] = React.useState({});
-
-  const [ initialMovies, setInitialMovies ] = React.useState([]);
-  const [ areThereStoragedMovies, setAreThereStoragedMovies ] = React.useState(false);
-  const [ areStoragedMoviesFiltered, setAreStoragedMoviesFiltered ] = React.useState(false);
-  const [ storagedShortMovies, setStoragedShortMovies ] = React.useState([]);
+  const [movies, setMovies] = React.useState([]);
+//  const [ areThereStoragedMovies, setAreThereStoragedMovies ] = React.useState(true);
   const [ storagedMovies, setStoragedMovies ] = React.useState([]);
   const [ isShortMoviesCheckboxChecked, setIsShortMoviesCheckboxChecked ] = React.useState(false);
-
+  const [isLoading, setIsLoading ] = React.useState(false);
+  const [isPerformed, setIsPerformed] = React.useState(false);
+  const [initialValue, setInitialValue ] = React.useState('');
+  const [searchResultMessage, setSearchResultMessage] = React.useState('');
   const location = useLocation();
   const history = useHistory();
   
@@ -40,7 +38,6 @@ export default function App() {
       if (res) {
   //      setisInfoTooltipOpen(true)
   //      setisSuccessful(true);
-  //      setUserData({name, email});
         setTimeout(() => {
           history.push("/signin");;
   //          setisInfoTooltipOpen(false)
@@ -92,7 +89,6 @@ export default function App() {
         if(res) {
           setLoggedIn(true);
           history.push(path)
-  //        setUserData({email: res.email})
         }
       })
       .catch((err) => { 
@@ -116,29 +112,96 @@ export default function App() {
     }
   }, [loggedIn]);
 
-  // React.useEffect(() => {
-  //   if (loggedIn) {
-  //     Promise.all([MainApi.getUserInfo(), 
-  //     //  MoviesApi.getMovies()
-  //     ])
-  //     .then(([currentUser, movies]) => {
-  //       setCurrentUser(currentUser);
-  //     //  setMovies(movies);
-  //     })
-  //     .catch((err) =>
-  //       console.log(`${err}`))
-  //   }
-  // }, [loggedIn]);
-
   function handleUserUpdate({ name, email }) {
     MainApi.editUserInfo({name, email})
     .then((data) => {
       setCurrentUser(data);
-//      setUserData(data);
     })
     .catch((err) =>
       console.log(`${err}`))
   }
+
+  function arrangeArray(foundArr) {
+    let foundMovies = [];
+    foundArr.forEach((item, index) => {
+      foundMovies[index] = {
+        nameRU: item.nameRU,
+        image: `https://api.nomoreparties.co${item.image.url}`,
+        trailerLink: item.trailerLink,
+        country: item.country,
+        duration: item.duration,
+        movieId: item.id,
+        thumbnail: `https://api.nomoreparties.co${item.image.url}`,
+        director: item.director,
+        year: item.year,
+        description: item.description,
+        nameEN: item.nameEN,
+      };
+    });
+    return foundMovies;
+  }
+
+  
+  function performSearch(allMovies, request) {
+    return allMovies.filter(
+      (item) =>
+        item.nameRU.includes(request) ||
+        item.nameRU.includes(request.toLowerCase()) ||
+        item.nameRU.includes(request.slice(0, 1).toUpperCase() + request.slice(1))
+    );
+  }
+
+  function filterByDuration(movies) {
+    return movies.filter((item) => item.duration < 41);
+  }
+
+  function handleSubmitSearchMovies(request) {
+    setIsLoading(true);
+    MoviesApi
+    .getMovies()
+    .then((res) => {
+      const arrangedArray = arrangeArray(res);
+      let foundMovies = performSearch(arrangedArray, request);
+      localStorage.setItem('search', request);
+      localStorage.setItem('checkboxState',
+        JSON.stringify(isShortMoviesCheckboxChecked))
+      setIsPerformed(true);
+      if (isShortMoviesCheckboxChecked) {
+          const filteredMovies = filterByDuration(foundMovies);
+          setMovies(filteredMovies);
+          if (movies.length < 1) {
+            setSearchResultMessage('Ничего не найдено')
+          } else {
+            localStorage.setItem('storagedMovies', JSON.stringify(filteredMovies));
+            setStoragedMovies(localStorage.getItem('storagedMovies'))
+          }
+      } else {
+        setMovies(foundMovies);
+        if (movies.length < 1) {
+          setSearchResultMessage('Ничего не найдено')
+        } else {
+        localStorage.setItem('storagedMovies', JSON.stringify(foundMovies));
+        setStoragedMovies(foundMovies)
+        }
+      }
+    })
+    .catch((err) => console.log(`${err}`),
+
+       // setSearchResultMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
+       )
+    .finally(() => {
+      setIsLoading(false);
+    });
+  }
+
+  // INITIAL RENDERING
+  React.useEffect(() => {
+    if (localStorage.getItem('search') && localStorage.getItem('checkboxState') && localStorage.getItem('storagedMovies')) {
+      setInitialValue(localStorage.getItem('search'))
+      setIsShortMoviesCheckboxChecked(JSON.parse(localStorage.getItem('checkboxState')))
+      setMovies(JSON.parse(localStorage.getItem('storagedMovies')));
+    }
+ }, [initialValue]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -175,10 +238,13 @@ export default function App() {
             loggedIn={loggedIn}
             path="/movies"
             component={Movies}
-            initialMovies={initialMovies}
-            areThereStoragedMovies={areThereStoragedMovies}
-            areStoragedMoviesFiltered={areStoragedMoviesFiltered}
-            storagedShortMovies={storagedShortMovies}
+            handleSubmitSearchForm={handleSubmitSearchMovies}
+            movies={movies}
+            isLoading={isLoading}
+            isPerformed={isPerformed}
+            initialValue={initialValue}
+            setInitialValue={setInitialValue}
+            searchResultMessage={searchResultMessage}
             storagedMovies={storagedMovies}
             isShortMoviesCheckboxChecked={isShortMoviesCheckboxChecked}
             setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}>
