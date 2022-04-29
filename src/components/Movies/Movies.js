@@ -6,15 +6,15 @@ import './Movies.css'
 export default function Movies (props) {
   const {
     movies,
+    savedMovies,
     initialValue,
     setInitialValue,
     handleSubmitSearchForm,
     isLoading,
     isPerformed,
-    storagedMovies,
     isShortMoviesCheckboxChecked,
     setIsShortMoviesCheckboxChecked,
-    searchResultMessage
+    searchResultMessage,
   } = props;
   return (
     <div className="movies">
@@ -26,9 +26,9 @@ export default function Movies (props) {
         setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}/>
       <MoviesCardList 
         movies={movies}
+        savedMovies={savedMovies}
         isLoading={isLoading}
         isPerformed={isPerformed}
-        storagedMovies={storagedMovies}
         searchResultMessage={searchResultMessage}
       />
     </div>

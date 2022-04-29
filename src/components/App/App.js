@@ -21,7 +21,7 @@ export default function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [movies, setMovies] = React.useState([]);
-//  const [ areThereStoragedMovies, setAreThereStoragedMovies ] = React.useState(true);
+  const [savedMovies, setSavedMovies] = React.useState([]);
   const [ storagedMovies, setStoragedMovies ] = React.useState([]);
   const [ isShortMoviesCheckboxChecked, setIsShortMoviesCheckboxChecked ] = React.useState(false);
   const [isLoading, setIsLoading ] = React.useState(false);
@@ -130,12 +130,12 @@ export default function App() {
         trailerLink: item.trailerLink,
         country: item.country,
         duration: item.duration,
-        movieId: item.id,
+        movieId: item.movieId,
         thumbnail: `https://api.nomoreparties.co${item.image.url}`,
         director: item.director,
         year: item.year,
         description: item.description,
-        nameEN: item.nameEN,
+        nameEN: item.nameEN
       };
     });
     return foundMovies;
@@ -161,7 +161,7 @@ export default function App() {
     .getMovies()
     .then((res) => {
       const arrangedArray = arrangeArray(res);
-      let foundMovies = performSearch(arrangedArray, request);
+      const foundMovies = performSearch(arrangedArray, request);
       localStorage.setItem('search', request);
       localStorage.setItem('checkboxState',
         JSON.stringify(isShortMoviesCheckboxChecked))
@@ -203,6 +203,78 @@ export default function App() {
     }
  }, [initialValue]);
 
+
+
+
+  //  if (!isLiked) {
+  //   moviesApi
+  //     .saveMovie(props.movie)
+  //     .then((res) => {
+  //       props.getSavedMovies();
+  //       setLikeClass('movie__like movie__like_set');
+  //     })
+  //     .catch((err) => console.log(err));
+  // } else {
+  //   const foundItem = props.savedFilms.find(
+  //     (item) => item.movieId === props.movie.movieId
+  //   );
+  //   moviesApi
+  //     .deleteMovie(foundItem.id)
+  //     .then((res) => {
+  //       setLikeClass('movie__like');
+  //       props.getSavedMovies();
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+
+
+
+
+  //  function handleCardLike(card) {
+  //   const isLiked = card.likes.some(i => i === currentUser._id);
+  //   const pressLike = isLiked ? Api.removeLike(card._id) : Api.addLike(card._id)
+  //   pressLike.then((newCard) => {
+  //     const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+  //     setCards(newCards);
+  //   })
+  //     .catch((err) =>
+  //       console.log(`${err}`))
+  // } 
+
+// console.log(currentUser._id)
+
+  React.useEffect(() => {
+    MainApi.getMovies()
+    .then((res) => {
+      let arrMovies = [];
+      let index = 0;
+      res.forEach((item) => {
+        if (item.owner === currentUser._id) {
+          arrMovies[index] = {
+            nameRU: item.nameRU,
+            image: item.image,
+            trailerLink: item.trailerLink,
+            country: item.country,
+            duration: item.duration,
+            movieId: item._id,
+            thumbnail: item.image,
+            director: item.director,
+            year: item.year,
+            description: item.description,
+            nameEN: item.nameEN
+          };
+          index++;
+        }
+      });
+      if (arrMovies.length > 0) {
+        setSavedMovies(arrMovies)
+      } else {
+        setSavedMovies([])
+      }
+    })
+    .catch((err) => console.log(err));
+  }, [currentUser._id]);
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -240,12 +312,12 @@ export default function App() {
             component={Movies}
             handleSubmitSearchForm={handleSubmitSearchMovies}
             movies={movies}
+            savedMovies={savedMovies}
             isLoading={isLoading}
             isPerformed={isPerformed}
             initialValue={initialValue}
             setInitialValue={setInitialValue}
             searchResultMessage={searchResultMessage}
-            storagedMovies={storagedMovies}
             isShortMoviesCheckboxChecked={isShortMoviesCheckboxChecked}
             setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}>
           </ProtectedRoute>
@@ -253,7 +325,9 @@ export default function App() {
           <ProtectedRoute 
             loggedIn={loggedIn}
             path="/saved-movies"
-            component={SavedMovies}>
+            component={SavedMovies}
+            movies={movies}
+            savedMovies={savedMovies}>
           </ProtectedRoute>
           
           <Route path="/*">

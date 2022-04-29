@@ -8,17 +8,17 @@ import Preloader from './../Preloader/Preloader';
 export default function MoviesCardList(props) {
   const {
     movies,
+    savedMovies,
     isLoading,
     isPerformed,
-    storagedMovies,
-    searchResultMessage
+    searchResultMessage,
   } = props;
 
   const [shownMoviesNumber, setShownMoviesNumber] = React.useState(12);
   const shownMovies = movies.slice(0, shownMoviesNumber)
 
   const [shownSavedMoviesNumber, setShownSavedMoviesNumber] = React.useState(3);
-  const savedMovies = movies.slice(0, shownSavedMoviesNumber);
+  const shownSavedMovies = savedMovies.slice(0, shownSavedMoviesNumber);
 
   React.useEffect(() => {
     function showMovies() {
@@ -74,7 +74,7 @@ export default function MoviesCardList(props) {
             <ul className="movies-cardlist">
               {shownMovies.map((item) => (
                 <li className='movies-cardlist__movie' key={item.movieId}>
-                  <MoviesCard movie={item} />
+                  <MoviesCard movie={item} savedMovies={savedMovies} />
                 </li>))
               }
             </ul>
@@ -88,16 +88,21 @@ export default function MoviesCardList(props) {
         }
       </Route>
 
-      {/* <Route path="/saved-movies">
-        <ul className="movies-cardlist">
-          {savedMovies.map((item) => (
-            <li className='movies-cardlist__movie' key={item.movieId}>
-              <MoviesCard movie={item} />
-            </li>))
-          }
-        </ul>
-        <div className="movies-cardlist-divider"></div>
-      </Route> */}
+      <Route path="/saved-movies">
+        {savedMovies.length === 0 
+          ? ''
+          : <>
+              <ul className="movies-cardlist">
+                {shownSavedMovies.map((item) => (
+                  <li className='movies-cardlist__movie' key={item.movieId}>
+                    <MoviesCard movie={item} savedMovies={savedMovies}/>
+                  </li>))
+                }
+              </ul>
+              <div className="movies-cardlist-divider"></div>
+            </>
+        }
+      </Route>
     </>
   );
 }

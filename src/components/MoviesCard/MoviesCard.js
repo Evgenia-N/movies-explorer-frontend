@@ -1,22 +1,35 @@
 import React from "react";
 import './MoviesCard.css'
 import { Route } from "react-router-dom";
+import MainApi from "../../utils/MainApi";
 
 export default function MoviesCard(props) {
-  const [isSaved, setIsSaved] = React.useState(false);
+  const {
+  movie,
+  savedMovies
+  } = props;
+  const [ isSaved, setIsSaved ] = React.useState(savedMovies.find((item) => item.nameRU === movie.nameRU))
+
+  const savedMovie = savedMovies.find((item) => item.nameRU === movie.nameRU);
 
   function onSaveMovie() {
-    setIsSaved(true);
+    if (isSaved) {
+      MainApi.deleteMovie(savedMovie.movieId)
+      setIsSaved(false)
+    } else {
+      MainApi.saveMovie(movie)
+      setIsSaved(true)
+   }
   }
 
   function onDeleteMovie() {
-    setIsSaved(false);
+    MainApi.deleteMovie(savedMovie.movieId)
   }
 
   return (
   <>
-  <a href={props.movie.trailerLink} className='movies-card__video' target="_blank">
-    <img src={props.movie.image} alt={props.movie.nameRU} className="movies-card__pic" />
+  <a href={movie.trailerLink} className='movies-card__video' target="_blank">
+    <img src={movie.image} alt={movie.nameRU} className="movies-card__pic" />
   </a>
   <Route path="/movies">
     <button onClick={onSaveMovie} className={ isSaved ? "movies-card__saved-button" : "movies-card__save-button"}></button> 
