@@ -1,0 +1,43 @@
+.popup {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  min-width: 300px;
+  min-height: 120px;
+  border-radius: 10px;
+  position: fixed;
+  top: 10px;
+  background-color: #FFF;
+  box-shadow: 0px 1px 5px grey;
+}
+
+.popup_opened {
+  display: flex;
+}
+
+.popup__container {
+  display: flex;
+  justify-content: center;
+  max-width: 90%;
+}
+
+.popup__close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  background-image: url('../../images/delete-movie.svg');
+  background-color: transparent;
+  border: 0;
+}
+
+.popup__text {
+  color: #000;
+  font-size: 20px;
+  margin: 0;
+  text-align: center;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}

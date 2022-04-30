@@ -11,6 +11,9 @@
 .movies-cardlist__movie {
   width: 360px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .movies-cardlist__movie:hover {

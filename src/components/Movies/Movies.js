@@ -7,6 +7,7 @@ export default function Movies (props) {
   const {
     movies,
     savedMovies,
+    setSavedMovies,
     initialValue,
     setInitialValue,
     handleSubmitSearchForm,
@@ -14,19 +15,21 @@ export default function Movies (props) {
     isPerformed,
     isShortMoviesCheckboxChecked,
     setIsShortMoviesCheckboxChecked,
-    searchResultMessage,
+    searchResultMessage
   } = props;
   return (
     <div className="movies">
       <SearchForm 
         initialValue={initialValue}
         setInitialValue={setInitialValue}
-        handleSubmitSearchForm={handleSubmitSearchForm}
+        handleSubmitSearch={handleSubmitSearchForm}
         isShortMoviesCheckboxChecked={isShortMoviesCheckboxChecked}
-        setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}/>
+        setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}
+        />
       <MoviesCardList 
         movies={movies}
         savedMovies={savedMovies}
+        setSavedMovies={setSavedMovies}
         isLoading={isLoading}
         isPerformed={isPerformed}
         searchResultMessage={searchResultMessage}

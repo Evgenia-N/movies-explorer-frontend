@@ -1,24 +1,21 @@
 import React from "react";
 import { Route } from "react-router-dom";
-// import { movies } from "../../utils/movies";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import './MoviesCardList.css'
 import Preloader from './../Preloader/Preloader';
+import './MoviesCardList.css'
 
 export default function MoviesCardList(props) {
   const {
     movies,
     savedMovies,
+    setSavedMovies,
     isLoading,
     isPerformed,
-    searchResultMessage,
+    searchResultMessage
   } = props;
 
   const [shownMoviesNumber, setShownMoviesNumber] = React.useState(12);
   const shownMovies = movies.slice(0, shownMoviesNumber)
-
-  const [shownSavedMoviesNumber, setShownSavedMoviesNumber] = React.useState(3);
-  const shownSavedMovies = savedMovies.slice(0, shownSavedMoviesNumber);
 
   React.useEffect(() => {
     function showMovies() {
@@ -35,21 +32,6 @@ export default function MoviesCardList(props) {
     window.addEventListener('resize', showMovies);
     return () => {
       window.removeEventListener('resize', showMovies);
-    }
-  }, []);
-
-  React.useEffect(() => {
-    function showSavedMovies() {
-      if (window.innerWidth < 767)  {
-        setShownSavedMoviesNumber(2)
-      }
-      else {
-        setShownSavedMoviesNumber(3)
-      }
-    }
-    window.addEventListener('resize', showSavedMovies);
-    return () => {
-      window.removeEventListener('resize', showSavedMovies);
     }
   }, []);
 
@@ -74,7 +56,7 @@ export default function MoviesCardList(props) {
             <ul className="movies-cardlist">
               {shownMovies.map((item) => (
                 <li className='movies-cardlist__movie' key={item.movieId}>
-                  <MoviesCard movie={item} savedMovies={savedMovies} />
+                  <MoviesCard movie={item} savedMovies={savedMovies} setSavedMovies={setSavedMovies} />
                 </li>))
               }
             </ul>
@@ -89,13 +71,17 @@ export default function MoviesCardList(props) {
       </Route>
 
       <Route path="/saved-movies">
-        {savedMovies.length === 0 
-          ? ''
-          : <>
+        {isLoading
+          ? <Preloader/>
+          : savedMovies.length === 0 
+            ? isPerformed
+              ? <p className='movies-cardlist__result'>{searchResultMessage}</p>
+              : <p className='movies-cardlist__result'>Нет сохраненных фильмов</p>
+            : <>
               <ul className="movies-cardlist">
-                {shownSavedMovies.map((item) => (
+                {savedMovies.map((item) => (
                   <li className='movies-cardlist__movie' key={item.movieId}>
-                    <MoviesCard movie={item} savedMovies={savedMovies}/>
+                    <MoviesCard movie={item} savedMovies={savedMovies} setSavedMovies={setSavedMovies}/>
                   </li>))
                 }
               </ul>

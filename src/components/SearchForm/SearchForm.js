@@ -6,7 +6,7 @@ export default function SearchForm(props) {
   const {
     initialValue,
     setInitialValue,
-    handleSubmitSearchForm,
+    handleSubmitSearch,
     isShortMoviesCheckboxChecked,
     setIsShortMoviesCheckboxChecked
   } = props;
@@ -20,7 +20,7 @@ export default function SearchForm(props) {
 
   function submitForm(evt) {
      evt.preventDefault();
-     handleSubmitSearchForm(request);
+     handleSubmitSearch(request);
   }
 
   return (
