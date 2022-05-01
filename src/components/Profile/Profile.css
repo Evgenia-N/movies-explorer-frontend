@@ -175,4 +175,11 @@ input:-webkit-autofill {
     font-size: 12px;
     line-height: 15px;
   }
+  .profile__error {
+    margin-bottom: 12px;
+  }
+  .profile__error:last-of-type {
+    margin: -380px 0 369px;
+  }
+  
 }
