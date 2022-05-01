@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export function useForm() {
   const [values, setValues] = React.useState({});
@@ -9,9 +9,12 @@ export function useForm() {
     const input = e.target;
     const name = input.name;
     const value = input.value;
-    
-    setValues(prevState => ({...prevState, [name]: value}));
-    setErrors(prevState => ({...prevState, [name]: input.validationMessage }));
+
+    setValues((prevState) => ({ ...prevState, [name]: value }));
+    setErrors((prevState) => ({
+      ...prevState,
+      [name]: input.validationMessage,
+    }));
     setIsValid(input.closest("form").checkValidity());
   };
 

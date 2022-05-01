@@ -1,38 +1,36 @@
 import React from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-import './SearchForm.css'
+import "./SearchForm.css";
 
 export default function SearchForm(props) {
   const {
     initialValue,
-    setInitialValue,
     handleSubmitSearch,
     isShortMoviesCheckboxChecked,
     setIsShortMoviesCheckboxChecked,
-    setIsPerformed
+    setIsPerformed,
   } = props;
 
-  const [ request, setRequest ] = React.useState(initialValue || '');
-  const [isValid, setIsValid] = React.useState(false)
+  const [request, setRequest] = React.useState(initialValue || "");
+  const [isValid, setIsValid] = React.useState(false);
 
   function handleChange(evt) {
-  //  setInitialValue(evt.target.value);
     setRequest(evt.target.value);
   }
 
   function submitForm(evt) {
-     evt.preventDefault();
-     handleSubmitSearch(request);
-     setIsPerformed(true);
+    evt.preventDefault();
+    handleSubmitSearch(request);
+    setIsPerformed(true);
   }
 
   React.useEffect(() => {
     if (request.length > 0) {
-      setIsValid(true)
+      setIsValid(true);
     } else {
-      setIsValid(false)
+      setIsValid(false);
     }
-  }, [request.length])
+  }, [request.length]);
 
   return (
     <>

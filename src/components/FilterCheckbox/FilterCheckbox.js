@@ -1,24 +1,20 @@
 import React from "react";
-import './FilterCheckbox.css';
+import "./FilterCheckbox.css";
 
 export default function FilterCheckbox(props) {
-  const {
-    isShortMoviesCheckboxChecked,
-    setIsShortMoviesCheckboxChecked
-  } = props;
+  const { isShortMoviesCheckboxChecked, setIsShortMoviesCheckboxChecked } =
+    props;
 
   function filterMoviesByDuration() {
     if (!isShortMoviesCheckboxChecked) {
       setIsShortMoviesCheckboxChecked(true);
       localStorage.setItem(
-        'checkboxState',
+        "checkboxState",
         JSON.stringify(!isShortMoviesCheckboxChecked)
       );
     } else {
       setIsShortMoviesCheckboxChecked(false);
-      localStorage.removeItem(
-        'checkboxState'
-      );
+      localStorage.removeItem("checkboxState");
     }
   }
 

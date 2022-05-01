@@ -1,9 +1,9 @@
 import React from "react";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
-import './Movies.css'
+import "./Movies.css";
 
-export default function Movies (props) {
+export default function Movies(props) {
   const {
     movies,
     savedMovies,
@@ -16,19 +16,19 @@ export default function Movies (props) {
     setIsSearchPerformed,
     isShortMoviesCheckboxChecked,
     setIsShortMoviesCheckboxChecked,
-    searchResultMessage
+    searchResultMessage,
   } = props;
   return (
     <div className="movies">
-      <SearchForm 
+      <SearchForm
         initialValue={initialValue}
         setInitialValue={setInitialValue}
         handleSubmitSearch={handleSubmitSearchForm}
         isShortMoviesCheckboxChecked={isShortMoviesCheckboxChecked}
         setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}
         setIsPerformed={setIsSearchPerformed}
-        />
-      <MoviesCardList 
+      />
+      <MoviesCardList
         movies={movies}
         savedMovies={savedMovies}
         setSavedMovies={setSavedMovies}
@@ -37,5 +37,5 @@ export default function Movies (props) {
         searchResultMessage={searchResultMessage}
       />
     </div>
-  )
+  );
 }
