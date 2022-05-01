@@ -40,8 +40,7 @@ export default function Profile({onEdit, onSignOut}) {
           id="name"
           name="name"
           type="name"
-          value={values.name || ''}
-          defaultValue={currentUser.name}
+          defaultValue={currentUser.name || ''}
           onChange={handleChange}
           className="profile__input"
           disabled={isDisabled}
@@ -56,8 +55,7 @@ export default function Profile({onEdit, onSignOut}) {
           id="email"
           name="email"
           type="email"
-          value={values.email || ''}
-          defaultValue={currentUser.email}
+          defaultValue={currentUser.email || ''}
           onChange={handleChange}
           className="profile__input"
           disabled={isDisabled}

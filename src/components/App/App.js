@@ -64,10 +64,11 @@ export default function App() {
       if (!email || !password) {
         return;
       }
-      localStorage.setItem('token', data._id);
       setLoggedIn(true);
+      localStorage.setItem('token', data._id);
       history.push("/");
       setCurrentUser(data);
+      console.log(data)
     })
     .catch((err) => {
       setIsInfoTooltipOpen(true)
@@ -85,7 +86,7 @@ export default function App() {
       console.log(res);
       localStorage.removeItem('token');
       localStorage.removeItem('search');
-      localStorage.removeItem('chechboxState');
+      localStorage.removeItem('checkboxState');
       localStorage.removeItem('storagedMovies');
       setLoggedIn(false);
       history.push("/");
@@ -109,6 +110,7 @@ export default function App() {
   }, [loggedIn]);
 
   React.useEffect(() => {
+    if (loggedIn) {
     MainApi.getMovies()
     .then((res) => {
       let arrMovies = [];
@@ -138,7 +140,8 @@ export default function App() {
       }
     })
     .catch((err) => console.log(err));
-  }, [currentUser._id]);
+    }
+  }, [currentUser._id, loggedIn]);
 
   // Изменение данных пользователя
 
@@ -164,7 +167,8 @@ export default function App() {
   // Проверка наличия токена
 
   const handleTokenCheck = (path) => {
-    if (localStorage.getItem('token')) {
+  //  if (localStorage.getItem('token')) {
+    if (loggedIn) {
       auth.checkToken(localStorage.getItem('token')).then((res) => {
         if(res) {
           setLoggedIn(true);
