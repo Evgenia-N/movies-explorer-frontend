@@ -10,7 +10,8 @@ export default function MoviesCardList(props) {
     savedMovies,
     setSavedMovies,
     isLoading,
-    isPerformed,
+    isSearchPerformed,
+    isSearchPerformedInSaved,
     searchResultMessage
   } = props;
 
@@ -49,7 +50,7 @@ export default function MoviesCardList(props) {
         { isLoading
         ? <Preloader/>
         : shownMovies.length === 0 
-          ? isPerformed
+          ? isSearchPerformed
             ? <p className='movies-cardlist__result'>{searchResultMessage}</p>
             : ''
           : <>
@@ -74,7 +75,7 @@ export default function MoviesCardList(props) {
         {isLoading
           ? <Preloader/>
           : savedMovies.length === 0 
-            ? isPerformed
+            ? isSearchPerformedInSaved
               ? <p className='movies-cardlist__result'>{searchResultMessage}</p>
               : <p className='movies-cardlist__result'>Нет сохраненных фильмов</p>
             : <>

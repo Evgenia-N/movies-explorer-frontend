@@ -8,20 +8,31 @@ export default function SearchForm(props) {
     setInitialValue,
     handleSubmitSearch,
     isShortMoviesCheckboxChecked,
-    setIsShortMoviesCheckboxChecked
+    setIsShortMoviesCheckboxChecked,
+    setIsPerformed
   } = props;
 
-  const [ request, setRequest ] = React.useState(initialValue);
+  const [ request, setRequest ] = React.useState(initialValue || '');
+  const [isValid, setIsValid] = React.useState(false)
 
   function handleChange(evt) {
-    setInitialValue(evt.target.value);
+  //  setInitialValue(evt.target.value);
     setRequest(evt.target.value);
   }
 
   function submitForm(evt) {
      evt.preventDefault();
      handleSubmitSearch(request);
+     setIsPerformed(true);
   }
+
+  React.useEffect(() => {
+    if (request.length > 0) {
+      setIsValid(true)
+    } else {
+      setIsValid(false)
+    }
+  }, [request.length])
 
   return (
     <>
@@ -32,10 +43,17 @@ export default function SearchForm(props) {
             placeholder="Фильм"
             type="text"
             onChange={handleChange}
-            defaultValue={initialValue || ''}
+            defaultValue={initialValue}
             required
           />
-          <button className="search-form__submit-button" type="submit" onClick={submitForm}/>
+          <button
+            className={`search-form__submit-button ${
+              !isValid && "search-form__submit-button_disabled"
+            }`}
+            type="submit"
+            onClick={submitForm}
+            disabled={!isValid}
+          />
         </div>
         <div className="search-form__checkbox-container">
           <FilterCheckbox

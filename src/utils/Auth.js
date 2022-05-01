@@ -1,5 +1,4 @@
-export const BASE_URL = 'http://localhost:3001';
-// https://api.evgexmovies.nomoredomains.xyz
+export const BASE_URL = 'https://api.evgexmovies.nomoredomains.xyz';
 
 function checkResponse(res) {
   if (res.ok) {
@@ -43,7 +42,6 @@ export const checkToken = (token) => {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-//      'Authorization': `Bearer ${token}`,
     }
   })
   .then(checkResponse)

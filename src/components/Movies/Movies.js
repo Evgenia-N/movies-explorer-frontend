@@ -12,7 +12,8 @@ export default function Movies (props) {
     setInitialValue,
     handleSubmitSearchForm,
     isLoading,
-    isPerformed,
+    isSearchPerformed,
+    setIsSearchPerformed,
     isShortMoviesCheckboxChecked,
     setIsShortMoviesCheckboxChecked,
     searchResultMessage
@@ -25,13 +26,14 @@ export default function Movies (props) {
         handleSubmitSearch={handleSubmitSearchForm}
         isShortMoviesCheckboxChecked={isShortMoviesCheckboxChecked}
         setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}
+        setIsPerformed={setIsSearchPerformed}
         />
       <MoviesCardList 
         movies={movies}
         savedMovies={savedMovies}
         setSavedMovies={setSavedMovies}
         isLoading={isLoading}
-        isPerformed={isPerformed}
+        isSearchPerformed={isSearchPerformed}
         searchResultMessage={searchResultMessage}
       />
     </div>

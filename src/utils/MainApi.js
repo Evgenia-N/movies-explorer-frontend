@@ -64,7 +64,7 @@ class MainApi {
 } 
 
 export default new MainApi ({
-  url: 'http://localhost:3001',
+  url: 'https://api.evgexmovies.nomoredomains.xyz',
   headers: { 
     'content-type': "application/json"
   }

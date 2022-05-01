@@ -9,9 +9,9 @@ export default function MoviesCard(props) {
   savedMovies,
   setSavedMovies
   } = props;
+  
   const [ isSaved, setIsSaved ] = React.useState(savedMovies.find((item) => item.nameRU === movie.nameRU))
- 
-  const savedMovie = savedMovies.find((item) => item.nameRU === movie.nameRU);
+   const savedMovie = savedMovies.find((item) => item.nameRU === movie.nameRU);
 
   function updateSavedMovies() {
     const currentUser = localStorage.getItem('token')
@@ -42,15 +42,17 @@ export default function MoviesCard(props) {
   }
 
   function onSaveMovie() {
+    const savedMovie = savedMovies.find((item) => item.nameRU === movie.nameRU);
     if (isSaved) {
-      const newSavedMovies = savedMovies.filter((item) => item.nameRU !== savedMovie.nameRU);
-      MainApi.deleteMovie(savedMovie.movieId)
-      setSavedMovies(newSavedMovies);
+      MainApi.deleteMovie(savedMovie.movieId);
       setIsSaved(false)
+      const newSavedMovies = savedMovies.filter((item) => item.nameRU !== savedMovie.nameRU);
+      setSavedMovies(newSavedMovies);
+
     } else {
-      MainApi.saveMovie(movie)
-      setIsSaved(true)
-      updateSavedMovies()
+      MainApi.saveMovie(movie);
+      setIsSaved(true);
+      updateSavedMovies();
     }
   }
 

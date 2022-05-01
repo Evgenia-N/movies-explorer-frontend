@@ -105,6 +105,23 @@
   transition: opacity .1s ease;
 }
 
+.login__error {
+  color: #FF4062;
+  margin: -16px 0 6px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  height: 10px
+}
+
+.login__error:last-of-type {
+  margin: -215px 0 205px;
+}
+
+.login__link-button_disabled {
+  opacity: .5;
+}
+
 @media (max-width: 1279px) {
   .login__container {
     padding-top: 232px;

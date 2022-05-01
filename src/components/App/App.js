@@ -23,10 +23,11 @@ export default function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
-  const [ storagedMovies, setStoragedMovies ] = React.useState([]);
-  const [ isShortMoviesCheckboxChecked, setIsShortMoviesCheckboxChecked ] = React.useState(false);
+  const [storagedMovies, setStoragedMovies ] = React.useState([]);
+  const [isShortMoviesCheckboxChecked, setIsShortMoviesCheckboxChecked ] = React.useState(false);
   const [isLoading, setIsLoading ] = React.useState(false);
-  const [isPerformed, setIsPerformed] = React.useState(false);
+  const [isSearchPerformed, setIsSearchPerformed] = React.useState(false);
+  const [isSearchPerformedInSaved, setIsSearchPerformedInSaved] = React.useState(false);
   const [initialValue, setInitialValue ] = React.useState('');
   const [searchResultMessage, setSearchResultMessage] = React.useState('');
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
@@ -43,13 +44,14 @@ export default function App() {
       if (res) {
         setIsInfoTooltipOpen(true)
         setInfoTooltipMessage("Регистрация прошла успешно!");
-        hideInfoTooltip()
+        hideInfoTooltip();
+        history.push("/signin");
       }
     })
     .catch((err) => {
-        setIsInfoTooltipOpen(true)
-        setInfoTooltipMessage("Что-то пошло не так! Проверьте правильность введенных данных");
-        hideInfoTooltip()
+      setIsInfoTooltipOpen(true)
+      setInfoTooltipMessage("Что-то пошло не так! Проверьте правильность введенных данных");
+      hideInfoTooltip()
       console.log(`${err}`)
     })
   }
@@ -152,7 +154,7 @@ export default function App() {
     }, 3000);
     })
     .catch((err) => {
-      setIsInfoTooltipOpen(false)
+      setIsInfoTooltipOpen(true)
       setInfoTooltipMessage("Что-то пошло не так! Проверьте правильность введенных данных")
       hideInfoTooltip()
       console.log(`${err}`)
@@ -235,7 +237,7 @@ function performSearch(allMovies, request) {
       localStorage.setItem('search', request);
       localStorage.setItem('checkboxState',
         JSON.stringify(isShortMoviesCheckboxChecked))
-      setIsPerformed(true);
+      setIsSearchPerformed(true);
       if (isShortMoviesCheckboxChecked) {
           const filteredMovies = filterByDuration(foundMovies);
           setMovies(filteredMovies);
@@ -272,7 +274,7 @@ function performSearch(allMovies, request) {
     .getMovies()
     .then((res) => {
       const foundMovies = performSearch(res.filter((item) => item.owner === currentUser._id), request);
-      setIsPerformed(true);
+      setIsSearchPerformedInSaved(true);
       if (isShortMoviesCheckboxChecked) {
           const filteredMovies = filterByDuration(foundMovies);
           setSavedMovies(filteredMovies);
@@ -356,7 +358,8 @@ function performSearch(allMovies, request) {
             savedMovies={savedMovies}
             setSavedMovies={setSavedMovies}
             isLoading={isLoading}
-            isPerformed={isPerformed}
+            isSearchPerformed={isSearchPerformed}
+            setIsSearchPerformed={setIsSearchPerformed}
             initialValue={initialValue}
             setInitialValue={setInitialValue}
             handleSubmitSearchForm={handleSubmitSearchMovies}
@@ -374,13 +377,12 @@ function performSearch(allMovies, request) {
             savedMovies={savedMovies}
             setSavedMovies={setSavedMovies}
             handleSubmitSearchSavedForm={handleSubmitSearchSavedMovies}
-            initialValue={initialValue}
-            setInitialValue={setInitialValue}
             isLoading={isLoading}
-            isPerformed={isPerformed}
+            isSearchPerformedInSaved={isSearchPerformedInSaved}
             searchResultMessage={searchResultMessage}
             isShortMoviesCheckboxChecked={isShortMoviesCheckboxChecked}
             setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}
+            setIsSearchPerformedInSaved={setIsSearchPerformedInSaved}
             >
           </ProtectedRoute>
           

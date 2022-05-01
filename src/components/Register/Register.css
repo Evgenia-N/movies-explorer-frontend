@@ -107,6 +107,23 @@
   transition: opacity .1s ease;
 }
 
+.register__link-button_disabled {
+  opacity: .5;
+}
+
+.register__error {
+  color: #FF4062;
+  margin: -16px 0 6px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  height: 10px
+}
+
+.register__error:last-of-type {
+  margin: -146px 0 136px;
+}
+
 @media (max-width: 1279px) {
   .register__login-container {
     display: flex;
