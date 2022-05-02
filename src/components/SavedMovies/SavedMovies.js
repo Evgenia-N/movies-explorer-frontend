@@ -6,6 +6,7 @@ import "./SavedMovies.css";
 export default function SavedMovies(props) {
   const {
     movies,
+    setMovies,
     savedMovies,
     setSavedMovies,
     handleSubmitSearchSavedForm,
@@ -15,6 +16,7 @@ export default function SavedMovies(props) {
     isShortMoviesCheckboxChecked,
     setIsShortMoviesCheckboxChecked,
     setIsSearchPerformedInSaved,
+    filterByDuration,
   } = props;
 
   return (
@@ -24,6 +26,11 @@ export default function SavedMovies(props) {
         isShortMoviesCheckboxChecked={isShortMoviesCheckboxChecked}
         setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}
         setIsPerformed={setIsSearchPerformedInSaved}
+        filterByDuration={filterByDuration}
+        movies={movies}
+        setMovies={setMovies}
+        savedMovies={savedMovies}
+        setSavedMovies={setSavedMovies}
       />
       <MoviesCardList
         movies={movies}

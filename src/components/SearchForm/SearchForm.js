@@ -4,11 +4,16 @@ import "./SearchForm.css";
 
 export default function SearchForm(props) {
   const {
+    movies,
+    setMovies,
+    savedMovies,
+    setSavedMovies,
     initialValue,
     handleSubmitSearch,
     isShortMoviesCheckboxChecked,
     setIsShortMoviesCheckboxChecked,
     setIsPerformed,
+    filterByDuration,
   } = props;
 
   const [request, setRequest] = React.useState(initialValue || "");
@@ -57,6 +62,11 @@ export default function SearchForm(props) {
           <FilterCheckbox
             isShortMoviesCheckboxChecked={isShortMoviesCheckboxChecked}
             setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}
+            filterByDuration={filterByDuration}
+            movies={movies}
+            setMovies={setMovies}
+            savedMovies={savedMovies}
+            setSavedMovies={setSavedMovies}
             name={"Короткометражки"}
           />
         </div>

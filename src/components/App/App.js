@@ -42,12 +42,11 @@ export default function App() {
     auth
       .register(name, email, password)
       .then((res) => {
-        console.log(res);
         if (res) {
           setIsInfoTooltipOpen(true);
           setInfoTooltipMessage("Регистрация прошла успешно!");
           hideInfoTooltip();
-          history.push("/signin");
+          onLogin(email, password);
         }
       })
       .catch((err) => {
@@ -71,9 +70,8 @@ export default function App() {
         }
         setLoggedIn(true);
         localStorage.setItem("token", data._id);
-        history.push("/");
+        history.push("/movies");
         setCurrentUser(data);
-        console.log(data);
       })
       .catch((err) => {
         setIsInfoTooltipOpen(true);
@@ -90,12 +88,12 @@ export default function App() {
   function handleLogout() {
     auth
       .signOut()
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         localStorage.removeItem("token");
         localStorage.removeItem("search");
         localStorage.removeItem("checkboxState");
         localStorage.removeItem("storagedMovies");
+        localStorage.removeItem("storagedSavedShortMovies");
         setLoggedIn(false);
         history.push("/");
       })
@@ -274,6 +272,7 @@ export default function App() {
           "checkboxState",
           JSON.stringify(isShortMoviesCheckboxChecked)
         );
+        localStorage.removeItem("storagedShortMovies");
         setIsSearchPerformed(true);
         localStorage.setItem("storagedMovies", JSON.stringify(foundMovies));
         if (isShortMoviesCheckboxChecked) {
@@ -345,14 +344,19 @@ export default function App() {
   React.useEffect(() => {
     if (
       localStorage.getItem("search") &&
-      localStorage.getItem("checkboxState") &&
-      localStorage.getItem("storagedMovies")
+      localStorage.getItem("checkboxState")
     ) {
       setInitialValue(localStorage.getItem("search"));
       setIsShortMoviesCheckboxChecked(
         JSON.parse(localStorage.getItem("checkboxState"))
       );
-      setMovies(JSON.parse(localStorage.getItem("storagedMovies")));
+    }
+    if (localStorage.getItem("storagedMovies")) {
+      if (localStorage.getItem("storagedShortMovies")) {
+        setMovies(JSON.parse(localStorage.getItem("storagedShortMovies")));
+      } else {
+        setMovies(JSON.parse(localStorage.getItem("storagedMovies")));
+      }
     }
   }, [initialValue]);
 
@@ -404,6 +408,7 @@ export default function App() {
             path="/movies"
             component={Movies}
             movies={movies}
+            setMovies={setMovies}
             savedMovies={savedMovies}
             setSavedMovies={setSavedMovies}
             isLoading={isLoading}
@@ -415,6 +420,7 @@ export default function App() {
             searchResultMessage={searchResultMessage}
             isShortMoviesCheckboxChecked={isShortMoviesCheckboxChecked}
             setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}
+            filterByDuration={filterByDuration}
           ></ProtectedRoute>
 
           <ProtectedRoute
@@ -422,6 +428,7 @@ export default function App() {
             path="/saved-movies"
             component={SavedMovies}
             movies={movies}
+            setMovies={setMovies}
             savedMovies={savedMovies}
             setSavedMovies={setSavedMovies}
             handleSubmitSearchSavedForm={handleSubmitSearchSavedMovies}
@@ -431,6 +438,7 @@ export default function App() {
             isShortMoviesCheckboxChecked={isShortMoviesCheckboxChecked}
             setIsShortMoviesCheckboxChecked={setIsShortMoviesCheckboxChecked}
             setIsSearchPerformedInSaved={setIsSearchPerformedInSaved}
+            filterByDuration={filterByDuration}
           ></ProtectedRoute>
 
           <Route path="/*">

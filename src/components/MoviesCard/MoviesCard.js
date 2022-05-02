@@ -93,9 +93,15 @@ export default function MoviesCard(props) {
         ></button>
       </Route>
       <div className="movies-card__container">
-        <p className="movies-card__title">{props.movie.nameRU}</p>
+        <p className="movies-card__title">{movie.nameRU}</p>
         <div className="movies-card__duration-background">
-          <p className="movies-card__duration">{props.movie.duration} мин</p>
+          {movie.duration > 59 ? (
+            <p className="movies-card__duration">
+              {Math.floor(movie.duration / 60)} ч {movie.duration % 60} м
+            </p>
+          ) : (
+            <p className="movies-card__duration">{movie.duration % 60} мин</p>
+          )}
         </div>
       </div>
     </>

@@ -28,12 +28,20 @@ export default function HeaderContainer() {
             <img src={logo} alt="Логотип" className="header__logo" />
           </Link>
           <div className="header__movies-links-container">
-            <Link to="/movies" className="header__link-movies">
+            <NavLink
+              to="/movies"
+              className="header__link-movies"
+              activeClassName="header__link-movies_active"
+            >
               Фильмы
-            </Link>
-            <Link to="/saved-movies" className="header__link-saved-movies">
+            </NavLink>
+            <NavLink
+              to="/saved-movies"
+              className="header__link-movies"
+              activeClassName="header__link-movies_active"
+            >
               Сохраненные фильмы
-            </Link>
+            </NavLink>
           </div>
         </div>
         <Link to="/profile" className="header__link-profile">

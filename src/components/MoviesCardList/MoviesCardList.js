@@ -17,12 +17,14 @@ export default function MoviesCardList(props) {
 
   const [shownMoviesNumber, setShownMoviesNumber] = React.useState(12);
   const shownMovies = movies.slice(0, shownMoviesNumber);
+  const maxWidth = 1279;
+  const minWidth = 767;
 
   React.useEffect(() => {
     function showMovies() {
-      if (window.innerWidth > 767 && window.innerWidth < 1279) {
+      if (window.innerWidth > minWidth && window.innerWidth < maxWidth) {
         setShownMoviesNumber(8);
-      } else if (window.innerWidth < 767) {
+      } else if (window.innerWidth < minWidth) {
         setShownMoviesNumber(5);
       } else {
         setShownMoviesNumber(12);
@@ -35,9 +37,9 @@ export default function MoviesCardList(props) {
   }, []);
 
   function LoadMoreMovies() {
-    if (window.innerWidth > 1279) {
+    if (window.innerWidth > maxWidth) {
       setShownMoviesNumber(shownMoviesNumber + 3);
-    } else if (window.innerWidth < 1279) {
+    } else if (window.innerWidth < maxWidth) {
       setShownMoviesNumber(shownMoviesNumber + 2);
     }
   }

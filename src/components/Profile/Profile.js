@@ -15,12 +15,19 @@ export default function Profile({ onEdit, onSignOut }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    if (
+      values.name !== currentUser.name ||
+      values.email !== currentUser.email
+    ) {
+      setIsDisabled(true);
+      setIsEditModeOpen(false);
+      onEdit({
+        name: values.name,
+        email: values.email,
+      });
+    }
     setIsDisabled(true);
     setIsEditModeOpen(false);
-    onEdit({
-      name: values.name,
-      email: values.email,
-    });
   }
 
   function editProfile() {
