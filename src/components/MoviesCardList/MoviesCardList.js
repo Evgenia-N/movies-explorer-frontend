@@ -1,73 +1,114 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { movies } from "../../utils/movies";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import './MoviesCardList.css'
+import Preloader from "./../Preloader/Preloader";
+import "./MoviesCardList.css";
 
-export default function MoviesCardList() {
+export default function MoviesCardList(props) {
+  const {
+    movies,
+    savedMovies,
+    setSavedMovies,
+    isLoading,
+    isSearchPerformed,
+    isSearchPerformedInSaved,
+    searchResultMessage,
+  } = props;
+
   const [shownMoviesNumber, setShownMoviesNumber] = React.useState(12);
   const shownMovies = movies.slice(0, shownMoviesNumber);
-
-  const [shownSavedMoviesNumber, setShownSavedMoviesNumber] = React.useState(3);
-  const savedMovies = movies.slice(0, shownSavedMoviesNumber);
+  const maxWidth = 1279;
+  const minWidth = 767;
 
   React.useEffect(() => {
     function showMovies() {
-      if (window.innerWidth > 767 && window.innerWidth < 1279 )  {
-        setShownMoviesNumber(8)
-      }
-      else if (window.innerWidth < 767)  {
-        setShownMoviesNumber(5)
-      }
-      else {
-        setShownMoviesNumber(12)
+      if (window.innerWidth > minWidth && window.innerWidth < maxWidth) {
+        setShownMoviesNumber(8);
+      } else if (window.innerWidth < minWidth) {
+        setShownMoviesNumber(5);
+      } else {
+        setShownMoviesNumber(12);
       }
     }
-    window.addEventListener('resize', showMovies);
+    window.addEventListener("resize", showMovies);
     return () => {
-      window.removeEventListener('resize', showMovies);
-    }
+      window.removeEventListener("resize", showMovies);
+    };
   }, []);
 
-  React.useEffect(() => {
-    function showSavedMovies() {
-      if (window.innerWidth < 767)  {
-        setShownSavedMoviesNumber(2)
-      }
-      else {
-        setShownSavedMoviesNumber(3)
-      }
+  function LoadMoreMovies() {
+    if (window.innerWidth > maxWidth) {
+      setShownMoviesNumber(shownMoviesNumber + 3);
+    } else if (window.innerWidth < maxWidth) {
+      setShownMoviesNumber(shownMoviesNumber + 2);
     }
-    window.addEventListener('resize', showSavedMovies);
-    return () => {
-      window.removeEventListener('resize', showSavedMovies);
-    }
-  }, []);
+  }
 
   return (
     <>
       <Route path="/movies">
-        <ul className="movies-cardlist">
-          {shownMovies.map((item) => (
-            <li className='movies-cardlist__movie' key={item.id}>
-              <MoviesCard movie={item} />
-            </li>))
-          }
-        </ul>
-        <div className="movies-cardlist__more-movies-container">
-          <button className="movies-cardlist__more-movies-button">Ещё</button>
-        </div>
+        {isLoading ? (
+          <Preloader />
+        ) : shownMovies.length === 0 ? (
+          isSearchPerformed ? (
+            <p className="movies-cardlist__result">{searchResultMessage}</p>
+          ) : (
+            ""
+          )
+        ) : (
+          <>
+            <ul className="movies-cardlist">
+              {shownMovies.map((item) => (
+                <li className="movies-cardlist__movie" key={item.movieId}>
+                  <MoviesCard
+                    movie={item}
+                    savedMovies={savedMovies}
+                    setSavedMovies={setSavedMovies}
+                  />
+                </li>
+              ))}
+            </ul>
+            {movies.length > shownMovies.length ? (
+              <div className="movies-cardlist__more-movies-container">
+                <button
+                  className="movies-cardlist__more-movies-button"
+                  onClick={LoadMoreMovies}
+                >
+                  Ещё
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
+          </>
+        )}
       </Route>
 
       <Route path="/saved-movies">
-        <ul className="movies-cardlist">
-          {savedMovies.map((item) => (
-            <li className='movies-cardlist__movie' key={item.id}>
-              <MoviesCard movie={item} />
-            </li>))
-          }
-        </ul>
-        <div className="movies-cardlist-divider"></div>
+        {isLoading ? (
+          <Preloader />
+        ) : savedMovies.length === 0 ? (
+          isSearchPerformedInSaved ? (
+            <p className="movies-cardlist__result">{searchResultMessage}</p>
+          ) : (
+            <p className="movies-cardlist__result">Нет сохраненных фильмов</p>
+          )
+        ) : (
+          <>
+            <ul className="movies-cardlist">
+              {savedMovies.map((item) => (
+                <li className="movies-cardlist__movie" key={item.movieId}>
+                  <MoviesCard
+                    movie={item}
+                    savedMovies={savedMovies}
+                    setSavedMovies={setSavedMovies}
+                  />
+                </li>
+              ))}
+            </ul>
+            <div className="movies-cardlist-divider"></div>
+          </>
+        )}
       </Route>
     </>
   );

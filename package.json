@@ -1,5 +1,6 @@
 {
-  "name": "movies-explorer-frontend",
+  "name": "diploma-movies-explorer-frontend",
+  "author": "Evgenia_N",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,9 +15,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
