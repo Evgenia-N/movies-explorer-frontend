@@ -14,12 +14,14 @@ Beat Film Festival — фестиваль документальных филь�
 `React-dom`: 18.0.0,   
 `React-router-dom`: 5.2.1,   
 `React-scripts`: 5.0.0,   
-`Web-vitals`: 2.1.4;  
+`Web-vitals`: 2.1.4
 
 ## Запуск проекта
 
 `npm start` — запускает фронтенд   
 
-## [Ссылка на проект](https://evgexmovies.nomoredomains.xyz/)
+## Ссылка на проект
 
-* [Бэкенд проекта](https://github.com/Evgenia-N/movies-explorer-api) 
+[evgexmovies.nomoredomains.xyz](https://evgexmovies.nomoredomains.xyz/)   
+
+[Бэкенд проекта](https://github.com/Evgenia-N/movies-explorer-api) 
