@@ -272,9 +272,8 @@ export default function App() {
           "checkboxState",
           JSON.stringify(isShortMoviesCheckboxChecked)
         );
-        localStorage.removeItem("storagedShortMovies");
+        //localStorage.removeItem("storagedShortMovies");
         setIsSearchPerformed(true);
-        localStorage.setItem("storagedMovies", JSON.stringify(foundMovies));
         if (isShortMoviesCheckboxChecked) {
           const filteredMovies = filterByDuration(foundMovies);
           setMovies(filteredMovies);
@@ -282,7 +281,7 @@ export default function App() {
             setSearchResultMessage("Ничего не найдено");
           } else {
             localStorage.setItem(
-              "storagedMovies",
+              "storagedShortMovies",
               JSON.stringify(filteredMovies)
             );
           }
@@ -290,6 +289,10 @@ export default function App() {
           setMovies(foundMovies);
           if (foundMovies.length < 1) {
             setSearchResultMessage("Ничего не найдено");
+          } else {
+            localStorage.setItem(
+              "storagedMovies",
+              JSON.stringify(foundMovies))
           }
         }
         if (!foundMovies) {

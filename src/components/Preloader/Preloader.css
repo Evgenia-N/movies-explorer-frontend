@@ -60,7 +60,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: #F3C1F8;
+    background: linear-gradient(180deg, rgba(168,143,240,1) 0%, rgba(155,189,255,1) 50%, rgba(218,219,240,1) 100%);
     border-radius: 50px;
     margin-top: 50px;
 }
