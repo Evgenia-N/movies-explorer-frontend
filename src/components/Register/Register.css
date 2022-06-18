@@ -55,7 +55,7 @@
 
 .register__input:hover,
 .register__input:focus {
-  outline: 2px solid #F3C1F8;
+  outline: 1px solid #a88ff0;
 }
 
 .register__link-button {

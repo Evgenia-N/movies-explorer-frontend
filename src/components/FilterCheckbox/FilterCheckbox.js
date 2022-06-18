@@ -26,19 +26,23 @@ export default function FilterCheckbox(props) {
       localStorage.setItem(
         "checkboxState",
         JSON.stringify(!isShortMoviesCheckboxChecked)
-      );
-      localStorage.setItem(
-        "storagedShortMovies",
-        JSON.stringify(filteredMovies)
-      );
+      ); 
+      if (filteredMovies.length > 0) {
+        localStorage.setItem(
+          "storagedShortMovies",
+          JSON.stringify(filteredMovies)
+        );
+      }
     } else {
       localStorage.removeItem("storagedShortMovies");
-      setMovies(JSON.parse(localStorage.getItem("storagedMovies")));
       setIsShortMoviesCheckboxChecked(false);
       localStorage.setItem(
         "checkboxState",
         JSON.stringify(!isShortMoviesCheckboxChecked)
       );
+      if (localStorage.getItem("storagedMovies")) {
+        setMovies(JSON.parse(localStorage.getItem("storagedMovies")));
+      }
     }
   }
 

@@ -2,7 +2,7 @@
   max-width: 100%;
   margin: 0 auto;
   text-align: left;
-  background-color: #F3C1F8;
+  background: linear-gradient(180deg, rgba(168,143,240,1) 0%, rgba(155,189,255,1) 50%, rgba(218,219,240,1) 100%);
 }
 
 .promo__container{
@@ -49,9 +49,9 @@
   height: 26px;
   border-radius: 3px;
   border-style: none;
-  border: 1px solid #000;
-  color: #000;
-  background-color: #F3C1F8;
+  border: 1px solid #FFF;
+  color: #FFF;
+  background-color: transparent;
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;

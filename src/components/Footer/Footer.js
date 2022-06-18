@@ -34,7 +34,7 @@ export default function Footer() {
                 Github
               </a>
               <a
-                href="https://www.linkedin.com"
+                href="http://linkedin.com/in/evgenianikolaeva"
                 className="footer__link"
                 target="_blank"
                 aria-label="ссылка на профиль в соц.сети"

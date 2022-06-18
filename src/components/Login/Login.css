@@ -39,7 +39,7 @@
   background-color: #FFF;
   border: none;
   border-radius: 3px;
-  border-bottom: 1px  solid #E8E8E8;
+  border-bottom: 1px solid #E8E8E8;
   margin-bottom: 24px;
   padding: 0;
   height: 27px;
@@ -55,7 +55,7 @@
 
 .login__input:hover,
 .login__input:focus {
-  outline: 2px solid #F3C1F8;
+  outline: 1px solid #a88ff0;
 }
 
 .login__link-button {

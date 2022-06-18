@@ -68,7 +68,7 @@
 }
 
 .techs__grid-cell:hover {
-  background-color: #F3C1F8;
+  background: linear-gradient(180deg, rgba(168,143,240,1) 0%, rgba(155,189,255,1) 50%, rgba(218,219,240,1) 100%);
 }
 
 @media (max-width: 1279px) {

@@ -36,7 +36,7 @@
 }
 
 .movies-checkbox:checked + label:before {
-  background: #2BE080;
+  background: linear-gradient(180deg, rgba(168,143,240,1) 0%, rgba(155,189,255,1) 50%, rgba(218,219,240,1) 100%);
 }
 
 .movies-checkbox:checked + label:after {

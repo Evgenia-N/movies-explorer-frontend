@@ -29,7 +29,7 @@ export default function AboutMe() {
           </p>
           <div className="about-me__links-container">
             <a
-              href="https://www.linkedin.com"
+              href="http://linkedin.com/in/evgenianikolaeva/"
               className="about-me__link"
               target="_blank"
               aria-label="ссылка на профиль в соц.сети"

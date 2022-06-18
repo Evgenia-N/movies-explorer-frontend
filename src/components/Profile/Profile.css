@@ -91,7 +91,7 @@
   font-weight: 500;
   line-height: 17px;
   color: #FFF;
-  background-color: #F3C1F8;
+  background: linear-gradient(180deg, rgba(168,143,240,1) 0%, rgba(155,189,255,1) 50%, rgba(218,219,240,1) 100%);
   border-radius: 3px;
   border: none;
   display: none;
