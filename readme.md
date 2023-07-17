@@ -20,8 +20,4 @@ Beat Film Festival — фестиваль документальных филь�
 
 `npm start` — запускает фронтенд   
 
-## Ссылка на проект
-
-[evgexmovies.nomoredomains.xyz](https://evgexmovies.nomoredomains.xyz/)   
-
 [Бэкенд проекта](https://github.com/Evgenia-N/movies-explorer-api) 
